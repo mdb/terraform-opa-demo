@@ -1,0 +1,3 @@
+.terraform
+greet.sh
+tf-plan*
