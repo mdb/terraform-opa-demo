@@ -9,10 +9,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup Terraform
+    - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
     - name: Terraform Plan
       run: make tf-plan
-    - name: OPA evaluate Terraform Plan
+    - name: Set up OPA
       uses: b4b4r07/action-opa@master
+    - name: OPA evaluate Terraform Plan
       run: make opa-eval
