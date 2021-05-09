@@ -15,12 +15,10 @@ tf-init:
 tf-plan: tf-init
 	terraform plan \
 		--out $(TF_PLAN)
-
-tf-plan-json:
 	terraform show \
 		-json $(TF_PLAN) > $(TF_PLAN_JSON)
 
-opa-eval: tf-plan-json
+opa-eval:
 	opa \
 		eval \
 			--data policy.rego \

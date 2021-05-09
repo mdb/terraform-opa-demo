@@ -13,5 +13,6 @@ jobs:
       uses: hashicorp/setup-terraform@v1
     - name: Terraform Plan
       run: make tf-plan
-    - name: OPA evaluated Terraform Plan
+    - name: OPA evaluate Terraform Plan
+      uses: b4b4r07/action-opa@master
       run: make opa-eval
