@@ -1,5 +1,6 @@
 TF_PLAN = tf-plan.binary
 TF_PLAN_JSON = tf-plan.json
+UNAME = $(shell echo $(shell uname) | awk '{print tolower($0)}')
 
 .PHONY: tf-init \
 	tf-plan \
@@ -17,6 +18,14 @@ tf-plan: tf-init
 		--out $(TF_PLAN)
 	terraform show \
 		-json $(TF_PLAN) > $(TF_PLAN_JSON)
+
+install-opa:
+	curl \
+		--location \
+		--output opa \
+		https://openpolicyagent.org/downloads/v0.28.0/opa_$(UNAME)_amd64
+	chmod +x opa
+	mv opa /usr/local/bin
 
 opa-eval:
 	opa \
