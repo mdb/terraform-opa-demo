@@ -1,6 +1,7 @@
-TF_PLAN = tf-plan.binary
-TF_PLAN_JSON = tf-plan.json
-UNAME = $(shell echo $(shell uname) | awk '{print tolower($0)}')
+TF_PLAN := tf-plan.binary
+TF_PLAN_JSON := tf-plan.json
+UNAME := $(shell echo $(shell uname) | awk '{print tolower($0)}')
+OPA := $(shell opa -v)
 
 .PHONY: tf-init \
 	tf-plan \
@@ -20,12 +21,13 @@ tf-plan: tf-init
 		-json $(TF_PLAN) > $(TF_PLAN_JSON)
 
 install-opa:
+	which make
 	curl \
 		--location \
 		--output opa \
 		https://openpolicyagent.org/downloads/v0.28.0/opa_$(UNAME)_amd64
 	chmod +x opa
-	mv opa /usr/local/bin
+	mv opa /usr/bin/
 
 opa-eval:
 	opa \
