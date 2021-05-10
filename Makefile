@@ -28,7 +28,10 @@ opa:
 		https://openpolicyagent.org/downloads/v0.28.0/opa_$(UNAME)_amd64
 	chmod +x opa
 
-opa-eval: opa
+opa-test: opa
+	opa test . -v
+
+opa-eval: opa-test
 	./opa \
 		eval \
 			--data policy.rego \
