@@ -29,7 +29,9 @@ opa:
 	chmod +x opa
 
 opa-test: opa
-	opa test . -v
+	./opa test \
+		. \
+		--vervose
 
 opa-eval: opa-test
 	./opa \
