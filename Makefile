@@ -34,6 +34,7 @@ opa-test: opa
 		--verbose
 
 opa-eval: opa-test
+	cat $(TF_PLAN_JSON)
 	./opa \
 		eval \
 			--data policy.rego \
