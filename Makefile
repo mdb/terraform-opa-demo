@@ -29,6 +29,7 @@ opa:
 	chmod +x opa
 
 opa-test: opa
+	cat $(TF_PLAN_JSON)
 	./opa test \
 		. \
 		--verbose
