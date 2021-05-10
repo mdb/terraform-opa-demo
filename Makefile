@@ -31,7 +31,7 @@ opa:
 opa-test: opa
 	./opa test \
 		. \
-		--vervose
+		--verbose
 
 opa-eval: opa-test
 	./opa \
