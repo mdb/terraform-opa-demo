@@ -1,6 +1,7 @@
 TF_PLAN := tf-plan.binary
 TF_PLAN_JSON := tf-plan.json
-UNAME := $(shell echo $(shell uname) | awk '{print tolower($0)}')
+#UNAME := $(shell echo $(shell uname) | awk '{print tolower($0)}')
+UNAME := $(shell  uname)
 
 .PHONY: tf-init \
 	tf-plan \
@@ -40,3 +41,4 @@ clean:
 	rm *.tfstate || exit 0
 	rm *.sh || exit 0
 	rm -rf .terraform || exit 0
+	rm opa || exit 0
