@@ -19,7 +19,6 @@ tf-plan: tf-init
 		--out $(TF_PLAN)
 	terraform show \
 		-json $(TF_PLAN) > $(TF_PLAN_JSON)
-	cat $(TF_PLAN_JSON)
 
 opa:
 	curl \
