@@ -4,6 +4,10 @@ test_acceptable_greeting {
   has_acceptable_greeting with input as {"variables": {"greeting": {"value": "hello"}}}
 }
 
+test_acceptable_nondefault_greeting {
+  has_acceptable_greeting with input as {"variables": {"greeting": {"value": "hi"}}}
+}
+
 test_inacceptable_greeting {
   not has_acceptable_greeting with input as {"variables": {"greeting": {"value": "goodbye"}}}
 }
