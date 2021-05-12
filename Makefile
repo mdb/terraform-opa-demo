@@ -1,11 +1,10 @@
 TF_PLAN := tf-plan.binary
 TF_PLAN_JSON := tf-plan.json
-#UNAME := $(shell echo $(shell uname) | awk '{print tolower($0)}')
 UNAME := $(shell  uname)
 
 .PHONY: tf-init \
 	tf-plan \
-	tf-plan-json \
+	opa-test \
 	opa-eval \
 	clean
 
