@@ -21,26 +21,24 @@ define opa
 			$(1)
 endef
 
-.PHONY: tf-init \
-	tf-plan \
-	opa-test \
-	opa-eval \
-	clean
-
 .DEFAULT_GOAL := tf-init
 
 tf-init:
 	$(call terraform,"terraform init")
+.PHONY: tf-init
 
 tf-plan: tf-init
 	$(call terraform,"terraform plan -out $(TF_PLAN)")
 	$(call terraform,"terraform show -json $(TF_PLAN) > $(TF_PLAN_JSON)")
+.PHONY: tf-plan
 
-opa-test: opa
+opa-test:
 	$(call opa,test . --verbose)
+.PHONY: opa-test
 
 opa-eval: opa-test
 	$(call opa,eval --data policy.rego --input $(TF_PLAN_JSON) data.terraform.analysis.has_acceptable_greeting --fail)
+.PHONY: opa-eval
 
 clean:
 	rm *.binary || exit 0
@@ -49,3 +47,4 @@ clean:
 	rm *.sh || exit 0
 	rm -rf .terraform || exit 0
 	rm opa || exit 0
+.PHONY: tf-init
