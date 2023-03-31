@@ -1,6 +1,17 @@
+TF_VERSION := 1.2.7
 TF_PLAN := tf-plan.binary
 TF_PLAN_JSON := tf-plan.json
 UNAME := $(shell  uname)
+
+define terraform
+	docker run \
+		--volume $(shell pwd):/src \
+		--workdir /src \
+		--entrypoint /bin/sh \
+		hashicorp/terraform:$(TF_VERSION) \
+			-c \
+				$(1)
+endef
 
 .PHONY: tf-init \
 	tf-plan \
@@ -11,13 +22,11 @@ UNAME := $(shell  uname)
 .DEFAULT_GOAL := tf-init
 
 tf-init:
-	terraform init
+	$(call terraform,"terraform init")
 
 tf-plan: tf-init
-	terraform plan \
-		--out $(TF_PLAN)
-	terraform show \
-		-json $(TF_PLAN) > $(TF_PLAN_JSON)
+	$(call terraform,"terraform plan -out $(TF_PLAN)")
+	$(call terraform,"terraform show -json $(TF_PLAN) > $(TF_PLAN_JSON)")
 
 opa:
 	curl \
