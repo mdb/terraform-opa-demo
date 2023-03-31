@@ -1,7 +1,7 @@
 TF_VERSION := 1.4.4
 TF_PLAN := tf-plan.binary
 TF_PLAN_JSON := tf-plan.json
-OPA_VERSION := 0.28.0
+OPA_VERSION := 0.40.0
 
 define terraform
 	docker run \
