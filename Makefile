@@ -1,4 +1,4 @@
-TF_VERSION := 1.2.7
+TF_VERSION := 1.4.4
 TF_PLAN := tf-plan.binary
 TF_PLAN_JSON := tf-plan.json
 UNAME := $(shell  uname)
